@@ -1,0 +1,1226 @@
+/* =========================================================
+   COURSE REGISTRATION SYSTEM
+   CLEAN BLACK + GOLD + WHITE THEME
+   STUDENT + ADMIN
+   ========================================================= */
+
+
+/* =========================
+   RESET
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   GLOBAL
+   ========================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   STUDENT TOP NAVIGATION
+   ========================================================= */
+
+.topbar {
+    width: 100%;
+    background: #000;
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 30px;
+
+    border-bottom: 3px solid #d4af37;
+}
+
+.topbar .logo {
+    color: #d4af37;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.topbar nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.topbar nav a {
+    display: inline-block;
+
+    background: #111;
+    color: #fff !important;
+
+    padding: 10px 15px;
+
+    border: 1px solid #444;
+    border-radius: 6px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.topbar nav a:hover {
+    background: #d4af37;
+    color: #000 !important;
+    border-color: #d4af37;
+}
+
+
+/* Student logout */
+
+.topbar nav .logout-btn {
+    background: #dc3545 !important;
+    color: #fff !important;
+    border-color: #dc3545 !important;
+}
+
+.topbar nav .logout-btn:hover {
+    background: #b02a37 !important;
+    border-color: #b02a37 !important;
+    color: #fff !important;
+}
+
+
+/* =========================================================
+   STUDENT MAIN CONTENT
+   ========================================================= */
+
+.dashboard-container {
+    width: 92%;
+    max-width: 1150px;
+
+    margin: 30px auto;
+}
+
+
+/* =========================
+   PAGE TITLE
+   ========================= */
+
+.page-title {
+    color: #d4af37;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   WELCOME SECTION
+   ========================================================= */
+
+.welcome-section {
+    background: #fff;
+    color: #111;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+
+    border-left: 5px solid #d4af37;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.welcome-section h1,
+.welcome-section h2 {
+    color: #111;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.welcome-section p {
+    color: #333;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   STUDENT CARDS
+   ========================================================= */
+
+.dashboard-card {
+    background: #fff;
+    color: #111;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+
+    border-top: 4px solid #d4af37;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dashboard-card h2 {
+    color: #111;
+    font-size: 21px;
+
+    margin-bottom: 15px;
+
+    border-bottom: 1px solid #ddd;
+
+    padding-bottom: 8px;
+}
+
+.dashboard-card h3 {
+    color: #111;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.dashboard-card p {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   STUDENT INFORMATION
+   ========================================================= */
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+.info-grid > div {
+    background: #fafafa;
+
+    padding: 15px;
+
+    border: 1px solid #ddd;
+
+    border-left: 4px solid #d4af37;
+
+    border-radius: 6px;
+}
+
+.info-grid span {
+    display: block;
+
+    color: #666;
+
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+.info-grid strong {
+    color: #111;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   SEMESTER INFORMATION
+   ========================================================= */
+
+.semester-info {
+    background: #fafafa;
+
+    color: #111;
+
+    padding: 18px;
+
+    border: 1px solid #ddd;
+
+    border-left: 5px solid #d4af37;
+
+    border-radius: 6px;
+}
+
+.semester-info h3 {
+    color: #111;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.semester-info p {
+    color: #333;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   REGISTRATION STATUS
+   ========================================================= */
+
+.registration-open {
+    display: inline-block;
+
+    background: #198754;
+
+    color: #fff !important;
+
+    padding: 7px 12px;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.registration-closed {
+    background: #fff3f3;
+
+    color: #111;
+
+    padding: 18px;
+
+    border-left: 5px solid #dc3545;
+
+    border-radius: 6px;
+}
+
+
+/* =========================================================
+   GENERAL CARDS
+   ========================================================= */
+
+.card {
+    background: #fff;
+    color: #111;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+
+    border-top: 4px solid #d4af37;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.card h2 {
+    color: #111;
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    color: #111;
+    font-size: 18px;
+}
+
+.card p {
+    color: #333;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+    display: inline-block;
+
+    background: #000;
+    color: #fff !important;
+
+    padding: 10px 16px;
+
+    margin: 5px 3px;
+
+    border: 1px solid #000;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: #d4af37;
+    color: #000 !important;
+    border-color: #d4af37;
+}
+
+
+/* Primary */
+
+.btn-primary {
+    background: #000;
+    color: #fff !important;
+}
+
+
+/* Success */
+
+.btn-success {
+    background: #198754;
+    color: #fff !important;
+    border-color: #198754;
+}
+
+.btn-success:hover {
+    background: #146c43;
+    color: #fff !important;
+}
+
+
+/* Danger */
+
+.btn-danger {
+    background: #dc3545;
+    color: #fff !important;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background: #b02a37;
+    color: #fff !important;
+}
+
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.table-container {
+    width: 100%;
+
+    overflow-x: auto;
+
+    background: #fff;
+
+    color: #111;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.table-container h2 {
+    color: #111;
+
+    font-size: 21px;
+
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #fff;
+
+    color: #111;
+}
+
+table th {
+    background: #000;
+
+    color: #d4af37;
+
+    padding: 12px;
+
+    text-align: left;
+
+    font-size: 15px;
+}
+
+table td {
+    color: #222;
+
+    padding: 12px;
+
+    border-bottom: 1px solid #ddd;
+
+    font-size: 15px;
+}
+
+table tbody tr:hover {
+    background: #fffbea;
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge {
+    display: inline-block;
+
+    padding: 6px 11px;
+
+    border-radius: 5px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.badge-green {
+    background: #198754;
+    color: #fff;
+}
+
+.badge-red {
+    background: #dc3545;
+    color: #fff;
+}
+
+.badge-gold {
+    background: #d4af37;
+    color: #000;
+}
+
+
+/* =========================================================
+   COURSE CARDS
+   ========================================================= */
+
+.course-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 15px;
+}
+
+.course-card {
+    background: #fff;
+
+    color: #111;
+
+    padding: 18px;
+
+    border: 1px solid #d4af37;
+
+    border-radius: 8px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+.course-card h3 {
+    color: #111;
+
+    font-size: 18px;
+
+    margin-bottom: 8px;
+}
+
+.course-card p {
+    color: #333;
+
+    font-size: 15px;
+
+    margin-bottom: 7px;
+}
+
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+
+    color: #111;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    background: #fff;
+
+    color: #111;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+
+    border-color: #d4af37;
+
+    box-shadow:
+        0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+
+/* =========================================================
+   ALERTS
+   ========================================================= */
+
+.alert {
+    padding: 13px 16px;
+
+    margin-bottom: 18px;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+}
+
+.alert-success,
+.alert.success {
+    background: #e8f7ee;
+
+    color: #146c43;
+
+    border-left: 5px solid #198754;
+}
+
+.alert-danger,
+.alert.error {
+    background: #fdeaea;
+
+    color: #b02a37;
+
+    border-left: 5px solid #dc3545;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+    text-align: center;
+
+    padding: 25px;
+
+    background: #fafafa;
+
+    color: #111;
+
+    border: 1px dashed #d4af37;
+
+    border-radius: 7px;
+}
+
+.empty-state p {
+    color: #555;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   ADMIN NAVBAR
+   ========================================================= */
+
+.admin-navbar {
+    width: 100%;
+
+    height: 70px;
+
+    background: #000;
+
+    color: #fff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    border-bottom: 3px solid #d4af37;
+
+    position: relative;
+
+    z-index: 1000;
+}
+
+.admin-logo {
+    color: #d4af37;
+
+    font-size: 21px;
+
+    font-weight: bold;
+}
+
+.admin-user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.admin-welcome {
+    color: #fff;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   ADMIN LOGOUT
+   ========================================================= */
+
+.admin-logout {
+    display: inline-block;
+
+    background: #dc3545 !important;
+
+    color: #fff !important;
+
+    padding: 10px 17px;
+
+    border: 1px solid #dc3545;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+}
+
+.admin-logout:hover {
+    background: #b02a37 !important;
+
+    border-color: #b02a37;
+}
+
+
+/* =========================================================
+   ADMIN SIDEBAR
+   ========================================================= */
+
+.admin-sidebar {
+    position: fixed;
+
+    left: 0;
+
+    top: 70px;
+
+    bottom: 0;
+
+    width: 220px;
+
+    background: #080808;
+
+    padding: 20px 15px;
+
+    border-right: 2px solid #d4af37;
+
+    overflow-y: auto;
+
+    z-index: 900;
+}
+
+
+/* =========================================================
+   ADMIN NAVIGATION BUTTONS
+   ========================================================= */
+
+.admin-nav-btn {
+    display: block;
+
+    width: 100%;
+
+    background: #111;
+
+    color: #fff !important;
+
+    padding: 12px 15px;
+
+    margin-bottom: 10px;
+
+    border: 1px solid #444;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.admin-nav-btn:hover {
+    background: #d4af37;
+
+    color: #000 !important;
+
+    border-color: #d4af37;
+}
+
+
+/* =========================================================
+   ADMIN MAIN CONTENT
+   ========================================================= */
+
+.admin-main-content {
+    margin-left: 220px;
+
+    width: calc(100% - 220px);
+
+    min-height: calc(100vh - 70px);
+
+    padding: 30px;
+
+    background: #000;
+
+    color: #fff;
+}
+
+
+/* Admin title */
+
+.admin-main-content .page-title {
+    color: #d4af37 !important;
+
+    font-size: 30px;
+
+    margin-bottom: 20px;
+}
+
+
+/* Admin cards */
+
+.admin-main-content .card {
+    background: #fff;
+
+    color: #111;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+
+    border-top: 4px solid #d4af37;
+}
+
+
+/* Admin tables */
+
+.admin-main-content .table-container {
+    background: #fff;
+
+    color: #111;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    margin-bottom: 20px;
+
+    overflow-x: auto;
+}
+
+
+/* Admin buttons */
+
+.admin-main-content .btn {
+    display: inline-block;
+
+    background: #000;
+
+    color: #fff !important;
+
+    padding: 10px 16px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    border: 1px solid #000;
+
+    margin: 4px 3px;
+}
+
+.admin-main-content .btn:hover {
+    background: #d4af37;
+
+    color: #000 !important;
+
+    border-color: #d4af37;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   TABLET / PHONE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Student navbar */
+
+    .topbar {
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 15px;
+    }
+
+    .topbar nav {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+    .topbar nav a {
+        font-size: 14px;
+
+        padding: 9px 12px;
+    }
+
+
+    /* Student content */
+
+    .dashboard-container {
+        width: 94%;
+
+        margin: 20px auto;
+    }
+
+
+    /* Student information */
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Admin navbar */
+
+    .admin-navbar {
+        height: auto;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 15px;
+    }
+
+    .admin-user {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    /* Admin sidebar */
+
+    .admin-sidebar {
+        position: static;
+
+        width: 100%;
+
+        height: auto;
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+
+        padding: 12px;
+
+        border-right: none;
+
+        border-bottom: 2px solid #d4af37;
+    }
+
+    .admin-nav-btn {
+        width: auto;
+
+        flex: 1 1 140px;
+
+        text-align: center;
+
+        margin-bottom: 0;
+    }
+
+
+    /* Admin content */
+
+    .admin-main-content {
+        margin-left: 0;
+
+        width: 100%;
+
+        padding: 22px 15px;
+    }
+
+
+    /* Tables */
+
+    .table-container table {
+        min-width: 600px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    .topbar .logo,
+    .admin-logo {
+        font-size: 18px;
+
+        text-align: center;
+    }
+
+    .topbar nav a {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .topbar nav {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .admin-user {
+        flex-direction: column;
+    }
+
+    .admin-logout {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .dashboard-container {
+        width: 94%;
+    }
+
+    .dashboard-card,
+    .card,
+    .welcome-section {
+        padding: 18px;
+    }
+
+    .page-title,
+    .admin-main-content .page-title {
+        font-size: 24px;
+    }
+
+    .btn {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
+/* ================================
+   REGISTER PAGE
+   ================================ */
+
+.register-container {
+    width: 90%;
+    max-width: 700px;
+    margin: 50px auto;
+}
+
+.register-container h1 {
+    text-align: center;
+    color: #d4af37;
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.register-card {
+    background: #ffffff;
+    color: #111;
+    padding: 35px;
+    border-radius: 10px;
+    border-top: 5px solid #d4af37;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+.register-card h2 {
+    text-align: center;
+    color: #111;
+    font-size: 22px;
+    margin: 0 0 25px;
+}
+
+.register-card form {
+    width: 100%;
+}
+
+.register-card label {
+    display: block;
+    color: #111;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.register-card input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    background: #fff;
+    color: #111;
+}
+
+.register-card input:focus {
+    outline: none;
+    border-color: #d4af37;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.15);
+}
+
+.register-card button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 5px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.register-card button:hover {
+    background: #d4af37;
+    color: #000;
+}
+
+.register-card p {
+    text-align: center;
+    margin-top: 20px;
+    color: #111;
+}
+
+.register-card a {
+    color: #b18b00;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register-card a:hover {
+    color: #d4af37;
+    text-decoration: underline;
+}
+
+/* Error messages */
+.register-error {
+    background: #ffe5e5;
+    color: #a00000;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border-left: 4px solid #a00000;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .register-container {
+        width: 92%;
+        margin: 30px auto;
+    }
+
+    .register-card {
+        padding: 25px 20px;
+    }
+
+    .register-container h1 {
+        font-size: 25px;
+    }
+
+}
