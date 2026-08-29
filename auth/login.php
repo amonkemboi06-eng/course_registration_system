@@ -519,21 +519,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="links">
 
-        <a href="forgot_password.php">
-            Forgot Password?
+    <a href="forgot_password.php">
+        Forgot Password?
+    </a>
+
+    <div class="register-link">
+
+        Don't have an account?
+
+        <a href="register.php">
+            Create Account
         </a>
 
-        <div class="register-link">
-
-            Don't have an account?
-
-            <a href="register.php">
-                Create Account
-            </a>
-
-        </div>
-
     </div>
+
+</div>
 
 </div>
 

@@ -246,47 +246,45 @@ $registrations = $stmt->fetchAll();
                         </td>
 
 
-                       <td>
+                    <td>
 
-    <?php if ($registration['status'] === 'registered'): ?>
+    <div class="status-actions">
 
-        <span class="badge">
-            Registered
-        </span>
+        <?php if ($registration['status'] === 'registered'): ?>
 
-        <br><br>
+            <span class="badge badge-gold">
+                Registered
+            </span>
 
-        <a
-            href="approve_registrations.php?id=<?= e((string)$registration['id']) ?>"
-            class="btn btn-success"
-            onclick="return confirm('Approve this course registration?');"
-        >
-            Approve
-        </a>
+            <a
+                href="approve_registrations.php?id=<?= e((string)$registration['id']) ?>"
+                class="btn btn-success"
+                onclick="return confirm('Approve this course registration?');"
+            >
+                Approve
+            </a>
 
-    <?php elseif ($registration['status'] === 'approved'): ?>
+        <?php elseif ($registration['status'] === 'approved'): ?>
 
-        <span class="badge badge-green">
-            Approved
-        </span>
+            <span class="badge badge-green">
+                Approved
+            </span>
 
-    <?php elseif ($registration['status'] === 'pending'): ?>
+        <?php elseif ($registration['status'] === 'pending'): ?>
 
-        <span class="badge badge-red">
-            Pending
-        </span>
+            <span class="badge badge-red">
+                Pending
+            </span>
 
-    <?php else: ?>
+        <?php else: ?>
 
-        <span class="badge">
-            <?= e(
-                ucfirst(
-                    (string)$registration['status']
-                )
-            ) ?>
-        </span>
+            <span class="badge">
+                <?= e(ucfirst((string)$registration['status'])) ?>
+            </span>
 
-    <?php endif; ?>
+        <?php endif; ?>
+
+    </div>
 
 </td>
 

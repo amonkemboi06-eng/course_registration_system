@@ -41,7 +41,12 @@ if (
         'This semester cannot be deleted because students have registrations associated with it.';
 }
 
-
+if (
+    isset($_GET['error']) &&
+    $_GET['error'] === 'not_found'
+) {
+    $errors[] = 'Semester not found.';
+}
 /*
 |--------------------------------------------------------------------------
 | Add Semester
