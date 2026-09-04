@@ -1,6 +1,5 @@
-<?php
 
-declare(strict_types=1);
+<?php
 
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/security.php';
@@ -9,7 +8,6 @@ require_once __DIR__ . '/../includes/auth.php';
 require_role('student');
 
 $user_id = (int)($_SESSION['user_id'] ?? 0);
-
 if ($user_id <= 0) {
     header('Location: ../login.php');
     exit;
@@ -55,8 +53,15 @@ if (!$student) {
 
 /*
 |--------------------------------------------------------------------------
-| Get Current Semester
+| Get Current / Latest Semester
 |--------------------------------------------------------------------------
+|
+| IMPORTANT:
+| We DO NOT filter by registration_open here.
+|
+| This allows students to continue seeing their registered
+| courses even after course registration has been closed.
+|
 */
 
 $stmt = $pdo->query(
@@ -65,14 +70,27 @@ $stmt = $pdo->query(
         name,
         academic_year,
         start_date,
-        end_date
+        end_date,
+        registration_open
      FROM semesters
-     WHERE registration_open = 1
      ORDER BY start_date DESC
      LIMIT 1'
 );
 
 $semester = $stmt->fetch();
+
+
+/*
+|--------------------------------------------------------------------------
+| Registration Status
+|--------------------------------------------------------------------------
+*/
+
+$registration_open = false;
+
+if ($semester) {
+    $registration_open = ((int)$semester['registration_open'] === 1);
+}
 
 
 /*
@@ -168,7 +186,8 @@ if ($semester) {
             Dashboard
         </a>
 
-        <?php if ($semester): ?>
+
+        <?php if ($registration_open): ?>
 
             <a href="register_courses.php">
                 Register Courses
@@ -176,9 +195,11 @@ if ($semester) {
 
         <?php endif; ?>
 
+
         <a href="my_courses.php">
             My Courses
         </a>
+
 
         <a
             href="../auth/logout.php"
@@ -224,7 +245,7 @@ if ($semester) {
 
 
         <!-- =================================================
-             NO OPEN SEMESTER
+             NO SEMESTER
              ================================================= -->
 
         <section class="dashboard-card">
@@ -232,12 +253,12 @@ if ($semester) {
             <div class="registration-closed">
 
                 <h3>
-                    Registration Closed
+                    No Semester Available
                 </h3>
 
                 <p>
-                    There is currently no semester open
-                    for course registration.
+                    There is currently no semester available
+                    in the system.
                 </p>
 
             </div>
@@ -255,7 +276,7 @@ if ($semester) {
         <section class="dashboard-card">
 
             <h2>
-                Current Semester
+                Semester
             </h2>
 
 
@@ -284,6 +305,31 @@ if ($semester) {
 
                 </p>
 
+
+                <?php if ($registration_open): ?>
+
+                    <p
+                        style="
+                            color:#198754;
+                            font-weight:bold;
+                        "
+                    >
+                        Course Registration is OPEN
+                    </p>
+
+                <?php else: ?>
+
+                    <p
+                        style="
+                            color:#dc3545;
+                            font-weight:bold;
+                        "
+                    >
+                        Course Registration is CLOSED
+                    </p>
+
+                <?php endif; ?>
+
             </div>
 
         </section>
@@ -301,6 +347,7 @@ if ($semester) {
 
 
             <div class="info-grid">
+
 
                 <div>
 
@@ -354,6 +401,7 @@ if ($semester) {
 
                 </div>
 
+
             </div>
 
         </section>
@@ -377,16 +425,31 @@ if ($semester) {
 
                     <p>
                         You have not registered for any
-                        courses for the current semester.
+                        courses for this semester.
                     </p>
 
 
-                    <a
-                        href="register_courses.php"
-                        class="btn btn-primary"
-                    >
-                        Register Courses
-                    </a>
+                    <?php if ($registration_open): ?>
+
+                        <a
+                            href="register_courses.php"
+                            class="btn btn-primary"
+                        >
+                            Register Courses
+                        </a>
+
+                    <?php else: ?>
+
+                        <p
+                            style="
+                                color:#dc3545;
+                                font-weight:bold;
+                            "
+                        >
+                            Registration is currently closed.
+                        </p>
+
+                    <?php endif; ?>
 
                 </div>
 
@@ -433,9 +496,12 @@ if ($semester) {
 
                         <tbody>
 
+
                         <?php foreach ($courses as $index => $course): ?>
 
+
                             <tr>
+
 
                                 <td>
                                     <?= $index + 1 ?>
@@ -459,13 +525,39 @@ if ($semester) {
 
                                 <td>
 
+                                    <?php
+
+                                    $status = strtolower(
+                                        (string)$course['status']
+                                    );
+
+                                    $status_color = '#198754';
+
+                                    if ($status === 'pending') {
+                                        $status_color = '#ffc107';
+                                    }
+
+                                    if ($status === 'dropped') {
+                                        $status_color = '#dc3545';
+                                    }
+
+                                    if ($status === 'approved') {
+                                        $status_color = '#198754';
+                                    }
+
+                                    if ($status === 'registered') {
+                                        $status_color = '#198754';
+                                    }
+
+                                    ?>
+
                                     <span
                                         style="
-                                            color:#198754;
+                                            color:<?= e($status_color) ?>;
                                             font-weight:bold;
                                         "
                                     >
-                                        <?= e(ucfirst($course['status'])) ?>
+                                        <?= e(ucfirst($status)) ?>
                                     </span>
 
                                 </td>
@@ -473,20 +565,31 @@ if ($semester) {
 
                                 <td>
 
-                                    <?= e(
-                                        date(
-                                            'd M Y H:i',
-                                            strtotime(
-                                                $course['registered_at']
+                                    <?php if (!empty($course['registered_at'])): ?>
+
+                                        <?= e(
+                                            date(
+                                                'd M Y H:i',
+                                                strtotime(
+                                                    $course['registered_at']
+                                                )
                                             )
-                                        )
-                                    ) ?>
+                                        ) ?>
+
+                                    <?php else: ?>
+
+                                        —
+
+                                    <?php endif; ?>
 
                                 </td>
 
+
                             </tr>
 
+
                         <?php endforeach; ?>
+
 
                         </tbody>
 
@@ -500,7 +603,9 @@ if ($semester) {
                                 </th>
 
                                 <th>
-                                    <?= e((string)$total_credit_hours) ?>
+                                    <?= e(
+                                        (string)$total_credit_hours
+                                    ) ?>
                                 </th>
 
                                 <th colspan="2">
@@ -510,20 +615,27 @@ if ($semester) {
 
                         </tfoot>
 
+
                     </table>
 
                 </div>
 
 
-                <br>
+                <?php if ($registration_open): ?>
 
 
-                <a
-                    href="register_courses.php"
-                    class="btn btn-primary"
-                >
-                    Add More Courses
-                </a>
+                    <br>
+
+
+                    <a
+                        href="register_courses.php"
+                        class="btn btn-primary"
+                    >
+                        Add More Courses
+                    </a>
+
+
+                <?php endif; ?>
 
 
             <?php endif; ?>
@@ -541,3 +653,4 @@ if ($semester) {
 </body>
 
 </html>
+```

@@ -32,9 +32,12 @@ $stmt = $pdo->prepare(
         s.first_name,
         s.last_name,
         s.year_of_study,
+        u.profile_photo,
         p.name AS program_name,
         p.code AS program_code
      FROM students s
+     INNER JOIN users u
+        ON s.user_id = u.id
      INNER JOIN programs p
         ON s.program_id = p.id
      WHERE s.user_id = :user_id
@@ -183,7 +186,9 @@ if ($current_semester) {
         Course Registration System
     </div>
 
-
+<a href="profile.php">
+    My Profile
+</a>
     <nav>
 
         <a href="dashboard.php">
@@ -230,28 +235,63 @@ if ($current_semester) {
 
     <section class="welcome-section">
 
-        <h1>
+    <div class="welcome-profile">
 
-            Welcome,
+        <?php if (!empty($student['profile_photo'])): ?>
 
-            <?= e($student['first_name']) ?>
+            <img
+                src="../uploads/profile_photos/<?= e($student['profile_photo']) ?>"
+                alt="Student Profile Photo"
+                class="dashboard-profile-photo"
+            >
 
-            <?= e($student['last_name']) ?>
+        <?php else: ?>
 
-        </h1>
+            <div class="dashboard-default-avatar">
+
+                <?= e(
+                    strtoupper(
+                        substr(
+                            $student['first_name'] ?? 'S',
+                            0,
+                            1
+                        )
+                    )
+                ) ?>
+
+            </div>
+
+        <?php endif; ?>
 
 
-        <p>
+        <div class="welcome-details">
 
-            Registration Number:
+            <h1>
 
-            <strong>
-                <?= e($student['registration_number']) ?>
-            </strong>
+                Welcome,
 
-        </p>
+                <?= e($student['first_name']) ?>
 
-    </section>
+                <?= e($student['last_name']) ?>
+
+            </h1>
+
+
+            <p>
+
+                Registration Number:
+
+                <strong>
+                    <?= e($student['registration_number']) ?>
+                </strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 
     <!-- =================================================
